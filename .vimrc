@@ -23,7 +23,8 @@ set termguicolors
 set background=dark
 "let g:gruvbox_italic=1
 "let g:gruvbox_contrast_dark='hard'
-colorscheme ayu
+let g:monokai_term_italic = 1
+colorscheme monokai
 
 " Plugins
 call plug#begin()
