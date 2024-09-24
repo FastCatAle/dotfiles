@@ -1,4 +1,9 @@
 # dotfiles for my Arch system
 
-Currently in beta.  
-More info soon...
+Programs used so far:  
+- Text editor: vim
+- Terminal: foot
+- Screenshot utility: grim, slurp and swappy
+- Audio server: Pipewire
+
+WIP...
