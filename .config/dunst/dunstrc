@@ -15,21 +15,21 @@ gap_size = 5
 [urgency_low]
 background = "#272822"
 foreground = "#f8f8f2"
-highlight = "#3e3d32"
+highlight = "#75715e"
 frame_color = "#75715e"
 timeout = 10
 
 [urgency_normal]
 background = "#272822"
 foreground = "#f8f8f2"
-highlight = "#3e3d32"
+highlight = "#75715e"
 frame_color = "#819aff"
 timeout = 10
 
 [urgency_critical]
 background = "#272822"
 foreground = "#f8f8f2"
-highlight = "#3e3d32"
+highlight = "#75715e"
 frame_color = "#f92672"
 timeout = 0
 override_pause_level = 60
