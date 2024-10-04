@@ -1,9 +1,16 @@
 # dotfiles for my Arch system
 
-Programs used so far:  
+Currently WIP
+
+## Programs used so far:  
 - Text editor: vim
 - Terminal: foot
-- Screenshot utility: grim, slurp and swappy
-- Audio server: Pipewire
+- Screenshot utility: grim
+- Audio server: pipewire
+- Notification daemon: dunst
+- Menu: wmenu
 
-WIP...
+## TODO list  
+- [] Add a dwl directory
+- [] Add a nvim configuration
+- [] Write a script for a powermenu  
