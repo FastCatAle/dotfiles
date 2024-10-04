@@ -11,6 +11,6 @@ Currently WIP
 - Menu: wmenu
 
 ## TODO list  
-- [] Add a dwl directory
-- [] Add a nvim configuration
-- [] Write a script for a powermenu  
+- [ ] Add a dwl directory
+- [ ] Add a nvim configuration
+- [ ] Write a script for a powermenu  
