@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case "$1" in
+    -s) grim $HOME/Pictures/$(date +'%s_grim.png') ;;
+	-c) grim - | wl-copy ;;
+    *) echo "Usage: '-s' to save, '-c' to copy"
+esac
+
+notify-send -t 1500 -u low \
+    -h string:x-dunst-stack-tag:screenshot "Screenshot taken"

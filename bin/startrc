@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#!/usr/bin/env bash
+
+#start() {
+#	if ! pgrep -fx "$1" ; then
+#		"$@"&
+#	fi
+#}
+
+# Dunst
+dunst
+
+# wlsunset
+#start wlsunset -l 8.9 -L -79.7 -t 4700
