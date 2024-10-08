@@ -10,6 +10,8 @@ Currently WIP
 - Notification daemon: dunst
 - Menu: wmenu
 
+For neovim you need to install [Plug](https://github.com/junegunn/vim-plug)  
+
 ## TODO list  
 - [ ] Add a dwl directory
 - [ ] Add a nvim configuration
