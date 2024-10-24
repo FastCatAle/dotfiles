@@ -17,3 +17,5 @@ vim.opt.wildmenu = true
 vim.opt.laststatus = 2
 vim.opt.showmode = true
 vim.opt.colorcolumn = "80"
+vim.opt.termguicolors = true
+vim.opt.signcolumn = "yes"
