@@ -1,0 +1,10 @@
+font=IBM Plex Mono 10
+background-color=#171414E5
+text-color=#F7F3F2FF
+padding=10
+border-size=3
+border-color=#0F62FEFF
+border-radius=3
+progress-color=#3C3838FF
+max-icon-size=32
+default-timeout=5000
