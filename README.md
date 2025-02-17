@@ -16,7 +16,7 @@ I use Helix now, and sometimes regular Vim.
 DWL it's a meme that works, but I don't want to maintain a repo JUST to have a functional
 desktop. Niri looks more polished so far, but River is alright I guess.  
 
-![Obligratory screenshot](image.png)  
+![Obligatory screenshot](image.png)  
 
 ## TODO list  
 - [ ] Update my scripts
