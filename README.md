@@ -1,18 +1,25 @@
 # dotfiles for my Arch system
 
-Currently WIP
+Some things changed... Still WIP  
 
-## Programs used so far:  
-- Text editor: vim
-- Terminal: foot
-- Screenshot utility: grim
-- Audio server: pipewire
-- Notification daemon: dunst
-- Menu: wmenu
+## Programs used:  
+- Text editor: [Helix](https://helix-editor.com)
+- Terminal: [foot](https://codeberg.org/dnkl/foot)
+- Screenshot utility: [grim](https://wayland.emersion.fr/grim) & [slurp](https://wayland.emersion.fr/slurp)
+- Notification daemon: [mako](https://wayland.emersion.fr/mako)
+- Menu: [fuzzel](https://codeberg.org/dnkl/fuzzel)
+- Window Manager: [Niri](https://github.com/YaLTeR/niri)
+- Bar: [EWW](https://github.com/elkowar/eww)  
 
-For neovim you need to install [Plug](https://github.com/junegunn/vim-plug)  
+~~For neovim you need to install Plug~~
+I use Helix now, and sometimes regular Vim.  
+DWL it's a meme that works, but I don't want to maintain a repo JUST to have a functional
+desktop. Niri looks more polished so far, but River is alright I guess.  
+
+![Obligratory screenshot](image.png)  
 
 ## TODO list  
-- [ ] Add a dwl directory
-- [ ] Add a nvim configuration
-- [ ] Write a script for a powermenu  
+- [ ] Update my scripts
+- [ ] Add a description for my dev setup
+- [ ] Finish my EWW config
+- [ ] Remove or mark unused configs  
