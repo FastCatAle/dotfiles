@@ -1,6 +1,0 @@
-#!/bin/sh
-
-wmenu-run -f "Fira Code 12" \
-	-N '191724' -n 'e0def4' \
-	-M '191724' -m 'e0def4' \
-	-S '31748f' -s 'e0def4'
