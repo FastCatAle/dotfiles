@@ -1,7 +1,28 @@
-/* {
+/** {
+  background-color: #171414;
   all: unset;
 }*/
 
 .bar {
+  margin: 0px 10px 0px 5px;
   background-color: #171414;
+  color: #f7f3f2;
+}
+
+/*tooltip {
+  background-color: rgba($color: #171414, $alpha: 0.8);
+  border: 1px solid rgba($color: #272525, $alpha: 1.0);
+  border-radius: 5px;
+}*/
+
+button {
+  background-color: unset;
+  //margin: 10px;
+  padding: 1px 10px;
+  //border: 1px solid #272525;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #272525;
 }

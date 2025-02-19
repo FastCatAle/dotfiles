@@ -18,20 +18,24 @@
            :tooltip "${EWW_BATTERY.BAT0.status}"
            :justify "center")))
 
-(defwidget tags []
-  (box :class "workspaces"
-       :orientation "h"
+(defwidget workspaces []
+  (box :orientation "h"
        :space-evenly true
        :halign "start"
        :spacing 2
-    (button :onclick "riverctl set-focused-tags 1" 1)
-    (button :onclick "riverctl set-focused-tags 2" 2)
-    (button :onclick "riverctl set-focused-tags 4" 3)
-    (button :onclick "riverctl set-focused-tags 8" 4)))
+       :class "tags_box"
+    (button :class "tag_button"
+            :onclick "niri msg action focus-workspace 1" "1")
+    (button :class "tag_button"
+            :onclick "niri msg action focus-workspace 2" "2")
+    (button :class "tag_button"
+            :onclick "niri msg action focus-workspace 3" "3")
+    (button :class "tag_button"
+            :onclick "niri msg action focus-workspace 4" "4")))
 
-(defwidget bar []
+(defwidget niri-bar []
   (centerbox :orientation "h"
-    (tags)
+    (workspaces)
     (clock)
     (tray)))
 
@@ -44,5 +48,4 @@
                                :anchor "top center")
            :stacking "fg"
            :exclusive true
-  (bar))
-
+  (niri-bar))
