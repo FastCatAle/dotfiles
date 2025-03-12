@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 start() {
-	if ! pgrep -fx "$1" ; then
-		"$@"&
+	if ! pgrep -x "$1" > /dev/null; then
+		"$@" &
 	fi
 }
 

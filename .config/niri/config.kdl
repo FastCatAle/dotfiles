@@ -1,25 +1,24 @@
 // Startup
-//spawn-at-startup "eww" "--restart" "open" "bar"
-//spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-//spawn-at-startup "wlsunset" "-l" "8.9" "-L" "-79.7" "-t" "4700"
-//spawn-at-startup "swaybg" "-m" "fill" "-i" "~/Pictures/backgrounds/Japan_street_1.jpg"
-spawn-at-startup "startrc"
+spawn-at-startup "autostart.sh"
 
 // Screenshot path
 screenshot-path "~/Pictures/Screenshots/Screenshot_%Y-%m-%d %H-%M-%S.png"
 
 input {
-    keyboard {
+   keyboard {
         xkb {
-            layout "latam"
-            model "pc102"
-            variant "deadtilde"
-            //options "grp:alt_altgr_toggle"
+            //layout "latam"
+            layout "us"
+            //model "pc102"
+            model "pc104"
+            //variant "deadtilde"
+            variant "altgr-intl"
+            options "grp:alt_altgr_toggle"
         }
         repeat-delay 400
         repeat-rate 25
     }
-    touchpad {
+    /-touchpad {
         //off
         tap
         //natural-scroll
@@ -28,7 +27,7 @@ input {
         scroll-method "two-finger"
         //disabled-on-external-mouse
     }
-    /-mouse {
+    mouse {
         //off
         natural-scroll
         accel-speed 0.8
@@ -38,11 +37,17 @@ input {
 }
 
 output "eDP-1" {
-    // off
+    //off
     mode "1366x768@60.003"
     scale 1
     transform "normal"
-    //position x=1280 y=0
+}
+
+output "HDMI-A-1" {
+    //off
+    mode "1920x1080"
+    scale 1
+    transform "normal"
 }
 
 layout {
@@ -78,7 +83,7 @@ animations {
 }
 
 window-rule {
-    match app-id=r#"zen$"#
+    //match app-id=r#"zen$"#
     match title="^Picture-in-Picture$"
     match title="About"
     open-floating true
@@ -107,8 +112,8 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Binds for running programs.
-    Mod+T { spawn "foot"; }
-    Mod+D { spawn "rofi" "-show" "drun"; }
+    Mod+T { spawn "alacritty"; }
+    Mod+D { spawn "fuzzel"; }
     Super+Alt+L { spawn "swaylock"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
@@ -116,14 +121,14 @@ binds {
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
 
     // Audio keybinds
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "volrc" "+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "volrc" "-"; }
-    XF86AudioMute        allow-when-locked=true { spawn "volrc" "mute"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn "volrc" "mic"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "volume.sh" "+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "volume.sh" "-"; }
+    XF86AudioMute        allow-when-locked=true { spawn "volume.sh" "mute"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn "volume.sh" "mic"; }
 
     // Brightness keybinds
-    XF86MonBrightnessDown { spawn "brightrc" "-"; }
-    XF86MonBrightnessUp { spawn "brightrc" "+"; }
+    XF86MonBrightnessDown { spawn "brightness.sh" "-"; }
+    XF86MonBrightnessUp { spawn "brightness.sh" "+"; }
 
     // Media keybinds
     XF86AudioPlay { spawn "playerctl" "play-pause"; }
