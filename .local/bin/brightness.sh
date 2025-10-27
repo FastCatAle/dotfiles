@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
+set -eu
 
 case "$1" in
-    +) brightnessctl set +5% - ;;
-    -) brightnessctl set 5%- - ;;
+    up) brightnessctl set +5% - ;;
+    down) brightnessctl set 5%- - ;;
 esac
 
-brightness=$(brightnessctl get)
-perc=$(((brightness / 5) * 2))
+BRIGHTNESS=$(brightnessctl get)
+PERCENT=$(((BRIGHTNESS / 5) * 2))
 
 notify-send -t 1500 -u low \
-	-h int:value:$perc \
-	-h string:x-dunst-stack-tag:brightness "Brightness $perc"
+	-h int:value:$PERCENT \
+	-h string:x-dunst-stack-tag:brightness "Brightness" "$PERCENT"
