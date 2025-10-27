@@ -1,47 +1,26 @@
 #!/bin/sh
 
-### Autostart
+riverctl spawn 'wlr-randr --output HDMI-A-1 --mode 1920x1080@74.973000Hz'
+
 systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 systemctl --user restart xdg-desktop-portal
 
-start() {
-	if ! pgrep -fx "$1" ; then
-		"$@"&
-	fi
-}
-# Polkit
-start /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-# Dunst
-start dunst
-# wlsunset
-start wlsunset -l 8.9 -L -79.7 -t 4700
-# Wallpaper
-start swaybg -m tile -i $HOME/pictures/backgrounds/tiles/evolved_tile073.png
-# Bar
-start eww --restart open bar
-# Network Manager applet
-start nm-applet
+riverctl spawn 'bash ~/.local/bin/autostart.sh'
 
-### Customization
-riverctl background-color 0x171414
-riverctl border-color-focused 0x001d6c
-riverctl border-color-unfocused 0x272525
-riverctl border-color-urgent 0xda1e28
-riverctl border-width 2
+riverctl keyboard-layout -variant "altgr-intl" -options "grp:alt_altgr_toggle" us
 
-### Inputs
-riverctl keyboard-layout latam
-riverctl input pointer-1267-226-Elan_Touchpad tap enabled
-
-# Open a terminal
+riverctl map normal Super D spawn fuzzel
+riverctl map normal None Print spawn 'bash ~/.local/bin/screenshot.sh save'
+riverctl map normal Shift Print spawn 'bash ~/.local/bin/screenshot.sh copy'
+riverctl map normal Control Print spawn 'bash ~/.local/bin/screenshot.sh select'
 riverctl map normal Super+Shift Return spawn foot
-# Open the app launcher 
-riverctl map normal Super P spawn 'rofi -show drun'
-# Close the focused view
-riverctl map normal Super C close
-# Exit river
-riverctl map normal Super+Shift E exit
+
+# Super+Q to close the focused view
+riverctl map normal Super Q close
+
+# Super+Shift+E to exit river
+riverctl map normal Super+Shift E spawn 'bash ~/.config/fuzzel/scripts/powermenu.sh'
 
 # Super+J and Super+K to focus the next/previous view in the layout stack
 riverctl map normal Super J focus-view next
@@ -98,8 +77,7 @@ riverctl map-pointer normal Super BTN_RIGHT resize-view
 # Super + Middle Mouse Button to toggle float
 riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 
-for i in $(seq 1 9)
-do
+for i in $(seq 1 9); do
     tags=$((1 << ($i - 1)))
 
     # Super+[1-9] to focus tag [0-8]
@@ -145,39 +123,39 @@ riverctl map passthrough Super F11 enter-mode normal
 
 # Various media key mapping examples for both normal and locked mode which do
 # not have a modifier
-for mode in normal locked
-do
-    # Control pulse audio volume with WirePlumber
-    riverctl map $mode None XF86AudioRaiseVolume  spawn 'volrc +'
-    riverctl map $mode None XF86AudioLowerVolume  spawn 'volrc -'
-    riverctl map $mode None XF86AudioMute         spawn 'volrc mute'
-    riverctl map $mode None XF86AudioMicMute      spawn 'volrc mic'
+for mode in normal locked; do
+    riverctl map $mode None XF86AudioRaiseVolume  spawn 'bash ~/.local/bin/volume.sh up'
+    riverctl map $mode None XF86AudioLowerVolume  spawn 'bash ~/.local/bin/volume.sh down'
+    riverctl map $mode None XF86AudioMute         spawn 'bash ~/.local/bin/volume.sh mute'
 
-    # Control MPRIS aware media players with playerctl
     riverctl map $mode None XF86AudioMedia spawn 'playerctl play-pause'
     riverctl map $mode None XF86AudioPlay  spawn 'playerctl play-pause'
     riverctl map $mode None XF86AudioPrev  spawn 'playerctl previous'
     riverctl map $mode None XF86AudioNext  spawn 'playerctl next'
 
-    # Control screen backlight brightness with brightnessctl
-    riverctl map $mode None XF86MonBrightnessUp   spawn 'brightrc +'
-    riverctl map $mode None XF86MonBrightnessDown spawn 'brightrc -'
-
-    # Take screenshots with grim and slurp
-    riverctl map $mode None Print           spawn 'shotrc save'
-    riverctl map $mode None Shift+Print     spawn 'shotrc copy'
-    riverctl map $mode None Control+Print   spawn 'shotrc select'
+#    riverctl map $mode None XF86MonBrightnessUp   spawn 'brightnessctl set +5%'
+#    riverctl map $mode None XF86MonBrightnessDown spawn 'brightnessctl set 5%-'
 done
 
+# Set background and border color
+riverctl background-color 0x161514
+riverctl border-color-focused 0x009df1
+riverctl border-color-unfocused 0x222110
+riverctl border-color-urgent 0xbd5070
+riverctl border-width 2
+riverctl xcursor-theme Adwaita
 
 # Set keyboard repeat rate
 riverctl set-repeat 50 300
 
-# Make all views with an app-id that starts with "float" and title "foo" start floating.
-riverctl rule-add -app-id 'zen' -title 'Picture-in-Picture' float
-riverctl rule-add -app-id 'pavucontrol' float
 
-# Make all views with app-id "bar" and any title use client-side decorations
+riverctl rule-add -title 'About*' float
+riverctl rule-add -title 'Picture-in-Picture' float
+riverctl rule-add -app-id 'org.pulseaudio.pavucontrol' float
+riverctl rule-add -app-id 'qView' float
+riverctl rule-add -app-id 'thunar' float
+riverctl rule-add -app-id 'moe.launcher.sleepy-launcher' float
+riverctl rule-add -app-id 'qView' ssd
 riverctl rule-add -app-id "bar" csd
 
 # Set the default layout generator to be rivertile and start it.

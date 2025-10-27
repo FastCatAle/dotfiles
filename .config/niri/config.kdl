@@ -1,23 +1,39 @@
-// Startup
-spawn-at-startup "autostart.sh"
+spawn-at-startup "wlsunset" "-l" "8.9" "-L" "-79.7" "-t" "4700"
+//spawn-sh-at-startup "shell-command --opt arg"
 
-// Screenshot path
-screenshot-path "~/Pictures/Screenshots/Screenshot_%Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Pictures/Screenshots/Screenshot_from_%Y-%m-%d_at_%H-%M-%S.png"
+
+prefer-no-csd
+
+cursor {
+    xcursor-theme "Adwaita"
+    xcursor-size 24
+}
 
 input {
-   keyboard {
+    keyboard {
         xkb {
             //layout "latam"
             layout "us"
             //model "pc102"
-            model "pc104"
+            //model "pc104"
             //variant "deadtilde"
             variant "altgr-intl"
             options "grp:alt_altgr_toggle"
         }
-        repeat-delay 400
-        repeat-rate 25
+        repeat-delay 300
+        repeat-rate 50
+        numlock
     }
+    
+    mouse {
+        //off
+        //natural-scroll
+        accel-speed 0.8
+        accel-profile "flat"
+        //scroll-method "no-scroll"
+    }
+
     /-touchpad {
         //off
         tap
@@ -27,20 +43,6 @@ input {
         scroll-method "two-finger"
         //disabled-on-external-mouse
     }
-    mouse {
-        //off
-        natural-scroll
-        accel-speed 0.8
-        accel-profile "flat"
-        //scroll-method "no-scroll"
-    }
-}
-
-output "eDP-1" {
-    //off
-    mode "1366x768@60.003"
-    scale 1
-    transform "normal"
 }
 
 output "HDMI-A-1" {
@@ -50,60 +52,84 @@ output "HDMI-A-1" {
     transform "normal"
 }
 
-layout {
-    gaps 16
-    center-focused-column "never"
-    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
-    preset-column-widths {
-        proportion 0.33333 // 1/3
-        proportion 0.5 // 1/2
-        proportion 0.66667 // 2/3
-    }
-    // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
-    //preset-window-heights {}
-    default-column-width { proportion 0.5; }
-    //default-column-width {}
-    focus-ring {
-        //off
-        width 3
-        active-color "#0f62fe"
-        inactive-color "#272525"
-    }
-    border {
-        off
-        width 3
-        active-color "#0f62fe"
-        inactive-color "#272525"
-    }
-}
-
-animations {
-    // off
-    // slowdown 3.0
+/-output "eDP-1" {
+    //off
+    mode "1366x768@60.003"
+    scale 1
+    transform "normal"
 }
 
 window-rule {
     //match app-id=r#"zen$"#
     match title="^Picture-in-Picture$"
     match title="About"
+    //match app-id=r#"^org\.pulseaudio\.pavucontrol$"#
     open-floating true
 }
 
-// Example: block out two password managers from screen capture.
-// (This example rule is commented out with a "/-" in front.)
 /-window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
 
     block-out-from "screen-capture"
-
-    // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
+    //block-out-from "screencast"
 }
 
 window-rule {
     geometry-corner-radius 3
     clip-to-geometry true
+}
+
+layout {
+    gaps 16
+    center-focused-column "never"
+    background-color "#272525"
+
+    preset-column-widths {
+        proportion 0.33333 // 1/3
+        proportion 0.5 // 1/2
+        proportion 0.66667 // 2/3
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        //off
+        width 3
+        active-color "#0f62fe"
+        inactive-color "#272525"
+        //urgent-color ""
+    }
+
+    border {
+        off
+        width 3
+        active-color "#0f62fe"
+        inactive-color "#272525"
+    }
+
+    /-shadow {
+        // off
+        on
+        softness 30
+        spread 3
+        offset x=0 y=0
+        draw-behind-window true
+        color "#00000050"
+        // inactive-color "#00000054"
+    }
+}
+
+overview {
+    zoom 0.70
+    backdrop-color "#001f30"
+    /-workspace-shadow {
+        // off
+        softness 40
+        spread 10
+        offset x=0 y=10
+        color "#00000050"
+    }
 }
 
 binds {
@@ -112,7 +138,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Binds for running programs.
-    Mod+T { spawn "alacritty"; }
+    Mod+T { spawn "foot"; }
     Mod+D { spawn "fuzzel"; }
     Super+Alt+L { spawn "swaylock"; }
 
@@ -121,14 +147,14 @@ binds {
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
 
     // Audio keybinds
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "volume.sh" "+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "volume.sh" "-"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "volume.sh" "up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "volume.sh" "down"; }
     XF86AudioMute        allow-when-locked=true { spawn "volume.sh" "mute"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "volume.sh" "mic"; }
 
     // Brightness keybinds
-    XF86MonBrightnessDown { spawn "brightness.sh" "-"; }
-    XF86MonBrightnessUp { spawn "brightness.sh" "+"; }
+    //XF86MonBrightnessDown { spawn "brightness.sh" "-"; }
+    //XF86MonBrightnessUp { spawn "brightness.sh" "+"; }
 
     // Media keybinds
     XF86AudioPlay { spawn "playerctl" "play-pause"; }
@@ -288,4 +314,14 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+}
+
+animations {
+    // off
+    // slowdown 3.0
+}
+
+hotkey-overlay {
+    skip-at-startup
+    hide-not-bound
 }
