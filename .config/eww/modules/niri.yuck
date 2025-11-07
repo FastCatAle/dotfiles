@@ -1,0 +1,14 @@
+(defvar test '{"workspaces":[{"id":1,"focused":true},{"id":2,"focused":false}]}')
+(deflisten niri_status
+  :initial '[{"id":1,"idx":1,"focused":true},{"id":2,"idx":2,"focused":false}]'
+  `./niri-events`)
+
+(defwidget workspaces []
+  (box
+    :orientation "horizontal"
+    :space-evenly true
+    :halign "start"
+    :spacing 4
+    (for w in {jq("${niri_status}", "sort_by(.idx)")}
+      (label
+        :text {w.focused ? "" : ""}))))

@@ -1,0 +1,41 @@
+; (defpoll current_volume
+;   :interval "1s"
+;   `wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F': ' '{print $2 * 100}'`)
+; (defpoll is_muted
+;   :interval "1s"
+;   `wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}'`)
+
+(defwidget tray []
+  (box
+    :class "systray"
+    :orientation "horizontal"
+    (systray
+      :orientation "horizontal"
+      :spacing 8
+      :icon-size 24
+      :space-evenly false
+      :prepend-new true)))
+
+(defwidget clock [] 
+  (box
+    :class "clock"
+    :vexpand true
+    :orientation "vertical"
+    (label
+      :valign "center"
+      :text "${formattime("${EWW_TIME}", "%l:%M %p")}")
+    (label
+      :valign "center"
+      :text "${formattime("${EWW_TIME}", "%a, %b %e")}")))
+
+; (defwidget volume []
+;   (box
+;     :orientation "horizontal"
+;     (eventbox
+;       :onclick "bash ~/.local/bin/volume.sh open"
+;       :onscroll "bash ~/.local/bin/volume.sh {}"
+;       (label
+;         :text {is_muted == "[MUTED]" ? "" : ""}
+;         :tooltip "Volume: ${current_volume}%"
+;         :class "volume"))))
+

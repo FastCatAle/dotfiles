@@ -1,0 +1,18 @@
+(defvar tag_array
+  "[1, 2, 3, 4, 5, 6, 7, 8, 9]")
+(deflisten tag_status
+  :initial '[{"output": "HDMI-A-1", "id": 1, "active": true, "focused": true, "occupied": false, "urgent": false}]'
+  "river-bedload -minified -watch tags")
+
+(defwidget river_tags []
+  (box
+    :orientation "horizontal"
+    :space-evenly true
+    :halign "start"
+    :spacing 0
+    (for num in tag_array
+      (button
+        :onclick "tag=$((1 << (${num} - 1))) && riverctl set-focused-tags $tag"
+        :visible {tag_status[num - 1].active}
+        :class {tag_status[num - 1].focused ? "focused" : ""}
+        num))))

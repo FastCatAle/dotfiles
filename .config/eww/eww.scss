@@ -1,28 +1,58 @@
-/** {
-  background-color: #171414;
+* {
   all: unset;
-}*/
-
-.bar {
-  margin: 0px 10px 0px 5px;
-  background-color: #171414;
-  color: #f7f3f2;
 }
 
-/*tooltip {
-  background-color: rgba($color: #171414, $alpha: 0.8);
-  border: 1px solid rgba($color: #272525, $alpha: 1.0);
-  border-radius: 5px;
-}*/
+$color-foreground: rgb(220, 215, 186);
+$color-background: rgb(31, 31, 40);
+$color-dark-foreground: rgb(200, 192, 147);
+$color-dark-background: rgb(22, 22, 29);
+$color-cyan: rgb(127, 180, 202);
+$color-blue: rgb(126, 156, 216);
+$color-purple: rgb(149, 127, 184);
+$color-red: rgb(228, 104, 118);
+$color-orange: rgb(255, 160, 102);
+$color-green: rgb(152, 187, 108);
 
-button {
-  background-color: unset;
-  //margin: 10px;
-  padding: 1px 10px;
-  //border: 1px solid #272525;
-  border-radius: 4px;
+window {
+  font-family: 'Inter Variable', 'Font Awesome 7 Free Solid', sans-serif;
+  font-size: 1em;
+  color: $color-foreground;
+
 }
 
-button:hover {
-  background-color: #272525;
+tooltip {
+  color: $color-foreground;
+  background-color: rgba($color-dark-background, 0.6);
+  border-color: #e8ecf5;
+  border-radius: 8px;
+  padding: 16px 16px 16px 16px;
+}
+
+menu {
+  background-color: rgba($color-dark-background, 0.8);
+  color: $color-foreground;
+  border-radius: 8px;
+  padding: 4px 8px;
+
+  >menuitem {
+    font-size: 1.05em;
+    padding: 4px;
+
+    &:disabled {
+      color: $color-purple;
+    }
+
+    &:hover {
+      color: $color-dark-background;
+      background-color: $color-blue;
+    }
+  }
+}
+
+.clock {
+  font-size: 1.5em;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 12px 0px;
+  background-color: rgba($color-background, 0.25);
 }
