@@ -1,4 +1,6 @@
-spawn-at-startup "wlsunset" "-l" "8.9" "-L" "-79.7" "-t" "4700"
+spawn-sh-at-startup "wlsunset -l 8.9 -L -79.7 -t 4700"
+spawn-sh-at-startup "eww daemon && eww open deskbar"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 //spawn-sh-at-startup "shell-command --opt arg"
 
 screenshot-path "~/Pictures/Screenshots/Screenshot_from_%Y-%m-%d_at_%H-%M-%S.png"
@@ -63,7 +65,9 @@ window-rule {
     //match app-id=r#"zen$"#
     match title="^Picture-in-Picture$"
     match title="About"
+    match title="Settings"
     //match app-id=r#"^org\.pulseaudio\.pavucontrol$"#
+    match app-id=r#"virt-viewer$"#
     open-floating true
 }
 
@@ -96,9 +100,9 @@ layout {
     focus-ring {
         //off
         width 3
-        active-color "#0f62fe"
-        inactive-color "#272525"
-        //urgent-color ""
+        active-color "#009de6"
+        inactive-color "#161514"
+        urgent-color "#bf8bbc"
     }
 
     border {
